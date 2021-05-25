@@ -18,11 +18,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
