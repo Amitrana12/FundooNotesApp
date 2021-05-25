@@ -106,7 +106,7 @@
                                 fxLayoutGap.lg='7%' fxLayoutAlign="space-around none">
                             </div>
                             <div class="bottom">
-                                <a class="signIn">login in instead</a>
+                                <a class="signIn" (click)="login()">login in instead</a>
                                 <button mat-raised-button color="primary" [disabled]="!registerForm.valid">REGISTER</button>
                             </div>
                         </mat-card-content>
