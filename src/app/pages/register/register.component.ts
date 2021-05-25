@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import { UserserviceService } from 'src/app/Services/userservice/userservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private router:Router,private userService:UserserviceService) { }
 
   ngOnInit (): void{
     this.registerForm = this.formBuilder.group({
@@ -20,8 +22,36 @@ export class RegisterComponent implements OnInit {
       password:['',[Validators.pattern("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,}$"),Validators.required,Validators.minLength(8)]],
       cpassword:['',Validators.required]
 
-   });
+   },{ validator: this.checkPasswords });
 
   }
+  checkPasswords(group: FormGroup) { 
+    // here we have the 'passwords' group
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.cpassword.value;
 
+    return pass === confirmPass ? null : { notSame: true }
+  }
+  public hasError=(controlName:string,errorName:string)=>{
+    return this.registerForm.controls[controlName].hasError(errorName);
+  }
+
+  register = (registerForm: { firstname: any; lastname: any; email: any; password: any; }) => {
+    try {
+      let newUser = {
+        FirstName: registerForm.firstname,
+        LastName: registerForm.lastname,
+        Email: registerForm.email,
+        Password: registerForm.password,
+        service: 'advance'
+         }
+        this.userService.registerUser(newUser).subscribe((response:any) => {
+          console.log(" register successfull", response);
+        })
+
+      } catch (error) {
+        console.log(error);
+  
+      }
+    } 
 }
