@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
 
   }
   checkPasswords(group: FormGroup) { 
+
     let pass = group.controls.password.value;
     let confirmPass = group.controls.cpassword.value;
 

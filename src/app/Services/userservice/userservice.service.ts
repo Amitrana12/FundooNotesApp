@@ -15,4 +15,6 @@ export class UserserviceService {
     console.log("Data in userservice",data)
     return this.httpservice.post(`${this.baseUrl}/api/User/register`,data);
   }
+
+  
 }

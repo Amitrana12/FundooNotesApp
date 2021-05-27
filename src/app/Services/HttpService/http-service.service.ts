@@ -29,8 +29,9 @@ export class HttpServiceService {
   //   //return this.http.post(this.baseUrl + url,data,options);
   //   return this.http.post(this.baseUrl + url,data,isHeaderRequired && headers);
   // }
-   post(url : string,data :any, isHeaderRequired : any=false,headers =null){
+   post(url : string, data :any, isHeaderRequired : any=false,headers =null){
      console.log(url,data)
    return this.http.post(url,data,isHeaderRequired && headers)
    }
+   
 }
